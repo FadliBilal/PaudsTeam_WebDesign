@@ -845,41 +845,41 @@ section,
   margin-bottom: 0;
 }
 
-.services .service-item {
+.programs .program-item {
   background-color: var(--surface-color);
   padding: 30px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   transition: 0.3s;
 }
 
-.services .service-item .icon {
+.programs .program-item .icon {
   font-size: 36px;
   line-height: 0;
   margin-right: 30px;
   color: var(--accent-color);
 }
 
-.services .service-item .title {
+.programs .program-item .title {
   font-weight: 700;
   margin-bottom: 15px;
   font-size: 20px;
 }
 
-.services .service-item .title a {
+.programs .program-item .title a {
   color: var(--heading-color);
 }
 
-.services .service-item .description {
+.programs .program-item .description {
   line-height: 24px;
   font-size: 14px;
   margin: 0;
 }
 
-.services .service-item:hover {
+.programs .program-item:hover {
   border-color: var(--accent-color);
 }
 
-.services .service-item:hover .title a {
+.programs .program-item:hover .title a {
   color: var(--accent-color);
 }
 
@@ -1358,14 +1358,14 @@ section,
   padding: 0;
 }
 
-.service-details .services-list {
+.program-details .programs-list {
   background-color: var(--surface-color);
   padding: 10px 30px;
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   margin-bottom: 20px;
 }
 
-.service-details .services-list a {
+.program-details .programs-list a {
   display: block;
   line-height: 1;
   padding: 8px 0 8px 15px;
@@ -1375,47 +1375,47 @@ section,
   transition: 0.3s;
 }
 
-.service-details .services-list a.active {
+.program-details .programs-list a.active {
   color: var(--heading-color);
   font-weight: 700;
   border-color: var(--accent-color);
 }
 
-.service-details .services-list a:hover {
+.program-details .programs-list a:hover {
   border-color: var(--accent-color);
 }
 
-.service-details .services-img {
+.program-details .programs-img {
   margin-bottom: 20px;
 }
 
-.service-details h3 {
+.program-details h3 {
   font-size: 26px;
   font-weight: 700;
 }
 
-.service-details h4 {
+.program-details h4 {
   font-size: 20px;
   font-weight: 700;
 }
 
-.service-details p {
+.program-details p {
   font-size: 15px;
 }
 
-.service-details ul {
+.program-details ul {
   list-style: none;
   padding: 0;
   font-size: 15px;
 }
 
-.service-details ul li {
+.program-details ul li {
   padding: 5px 0;
   display: flex;
   align-items: center;
 }
 
-.service-details ul i {
+.program-details ul i {
   font-size: 20px;
   margin-right: 8px;
   color: var(--accent-color);
