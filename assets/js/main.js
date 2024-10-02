@@ -1,17 +1,6 @@
-/**
-* Template Name: Reveal
-* Template URL: https://bootstrapmade.com/reveal-bootstrap-corporate-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 (function () {
   "use strict";
 
-  /**
-   * Apply .scrolled class to the body as the page is scrolled down
-   */
   function toggleScrolled() {
     const selectBody = document.querySelector('body');
     const selectHeader = document.querySelector('#header');
@@ -22,9 +11,6 @@
   document.addEventListener('scroll', toggleScrolled);
   window.addEventListener('load', toggleScrolled);
 
-  /**
-   * Mobile nav toggle
-   */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
 
   function mobileNavToogle() {
@@ -34,9 +20,6 @@
   }
   mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
 
-  /**
-   * Hide mobile nav on same-page/hash links
-   */
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
       if (document.querySelector('.mobile-nav-active')) {
@@ -46,9 +29,6 @@
 
   });
 
-  /**
-   * Toggle mobile nav dropdowns
-   */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
     navmenu.addEventListener('click', function (e) {
       e.preventDefault();
@@ -58,9 +38,6 @@
     });
   });
 
-  /**
-   * Preloader
-   */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
     window.addEventListener('load', () => {
@@ -68,9 +45,6 @@
     });
   }
 
-  /**
-   * Scroll top button
-   */
   let scrollTop = document.querySelector('.scroll-top');
 
   function toggleScrollTop() {
@@ -89,9 +63,6 @@
   window.addEventListener('load', toggleScrollTop);
   document.addEventListener('scroll', toggleScrollTop);
 
-  /**
-   * Animation on scroll function and init
-   */
   function aosInit() {
     AOS.init({
       duration: 600,
@@ -102,9 +73,6 @@
   }
   window.addEventListener('load', aosInit);
 
-  /**
-   * Init swiper sliders
-   */
   function initSwiper() {
     document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
       let config = JSON.parse(
@@ -121,16 +89,10 @@
 
   window.addEventListener("load", initSwiper);
 
-  /**
-   * Initiate glightbox
-   */
   const glightbox = GLightbox({
     selector: '.glightbox'
   });
 
-  /**
-   * Init isotope layout and filters
-   */
   document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
@@ -161,18 +123,12 @@
 
   });
 
-  /**
-   * Frequently Asked Questions Toggle
-   */
   document.querySelectorAll('.faq-item h3, .faq-item .faq-toggle').forEach((faqItem) => {
     faqItem.addEventListener('click', () => {
       faqItem.parentNode.classList.toggle('faq-active');
     });
   });
 
-  /**
-   * Correct scrolling position upon page load for URLs containing hash links.
-   */
   window.addEventListener('load', function (e) {
     if (window.location.hash) {
       if (document.querySelector(window.location.hash)) {
@@ -188,9 +144,6 @@
     }
   });
 
-  /**
-   * Navmenu Scrollspy
-   */
   let navmenulinks = document.querySelectorAll('.navmenu a');
 
   function navmenuScrollspy() {
@@ -213,53 +166,71 @@
   document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const imgParam = urlParams.get('img');
-
-    // Set gambar dan deskripsi berdasarkan parameter
     const images = ['act1.jpg', 'act2.jpg', 'act3.jpg'];
     const imgElement = document.getElementById('detail-image');
     const descriptions = document.querySelectorAll('.description');
     const prevButton = document.getElementById('prev-btn');
     const nextButton = document.getElementById('next-btn');
 
-    // Function to show the image and corresponding description
     function showImage(index) {
-        const imgPath = `assets/img/activities/${images[index]}`;
-        imgElement.src = imgPath;
+      const imgPath = `assets/img/activities/${images[index]}`;
+      imgElement.src = imgPath;
+      descriptions.forEach(desc => desc.style.display = 'none');
+      descriptions[index].style.display = 'block';
+      prevButton.disabled = index === 0;
+      nextButton.disabled = index === images.length - 1;
 
-        // Menyembunyikan semua deskripsi
-        descriptions.forEach(desc => desc.style.display = 'none');
-
-        // Menampilkan deskripsi yang sesuai
-        descriptions[index].style.display = 'block';
-
-        // Mengatur status tombol
-        prevButton.disabled = index === 0;
-        nextButton.disabled = index === images.length - 1;
-
-        // Mengubah URL tanpa menyegarkan halaman
-        history.replaceState(null, '', `?img=${images[index]}`);
+      history.replaceState(null, '', `?img=${images[index]}`);
     }
 
-    // Menentukan indeks awal berdasarkan imgParam
     let currentIndex = images.indexOf(imgParam) !== -1 ? images.indexOf(imgParam) : 0;
     showImage(currentIndex);
 
-    // Event listener untuk tombol Previous
     prevButton.addEventListener('click', () => {
-        if (currentIndex > 0) {
-            currentIndex--;
-            showImage(currentIndex);
-        }
+      if (currentIndex > 0) {
+        currentIndex--;
+        showImage(currentIndex);
+      }
     });
 
-    // Event listener untuk tombol Next
     nextButton.addEventListener('click', () => {
-        if (currentIndex < images.length - 1) {
-            currentIndex++;
-            showImage(currentIndex);
-        }
+      if (currentIndex < images.length - 1) {
+        currentIndex++;
+        showImage(currentIndex);
+      }
     });
-});
+  });
 
+  let currentProgram = 0;
+  const programs = document.querySelectorAll('.program-item');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+
+  function showProgram(index) {
+    programs.forEach((program, i) => {
+      program.classList.remove('active');
+      if (i === index) {
+        program.classList.add('active');
+      }
+    });
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === programs.length - 1;
+  }
+
+  nextBtn.addEventListener('click', () => {
+    if (currentProgram < programs.length - 1) {
+      currentProgram++;
+      showProgram(currentProgram);
+    }
+  });
+
+  prevBtn.addEventListener('click', () => {
+    if (currentProgram > 0) {
+      currentProgram--;
+      showProgram(currentProgram);
+    }
+  });
+
+  showProgram(currentProgram);
 
 })();
