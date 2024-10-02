@@ -200,37 +200,44 @@
       }
     });
   });
-
-  let currentProgram = 0;
-  const programs = document.querySelectorAll('.program-item');
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-
-  function showProgram(index) {
-    programs.forEach((program, i) => {
-      program.classList.remove('active');
-      if (i === index) {
-        program.classList.add('active');
+  
+  function updatePrograms() {
+    const programs = document.querySelectorAll('.program-item');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    let currentProgram = 0;
+  
+    // Fungsi untuk mengatur tampilan program berdasarkan index
+    function showProgram(index) {
+      programs.forEach((program, i) => {
+        program.style.display = i === index ? 'block' : 'none';
+      });
+  
+      // Mengatur status tombol Previous dan Next
+      prevBtn.disabled = index === 0;
+      nextBtn.disabled = index === programs.length - 1;
+    }
+  
+    // Event listener untuk Previous button
+    prevBtn.addEventListener('click', function() {
+      if (currentProgram > 0) {
+        currentProgram--;
+        showProgram(currentProgram);
       }
     });
-    prevBtn.disabled = index === 0;
-    nextBtn.disabled = index === programs.length - 1;
+  
+    // Event listener untuk Next button
+    nextBtn.addEventListener('click', function() {
+      if (currentProgram < programs.length - 1) {
+        currentProgram++;
+        showProgram(currentProgram);
+      }
+    });
+  
+    // Panggil untuk menampilkan program pertama
+    showProgram(currentProgram);
   }
-
-  nextBtn.addEventListener('click', () => {
-    if (currentProgram < programs.length - 1) {
-      currentProgram++;
-      showProgram(currentProgram);
-    }
-  });
-
-  prevBtn.addEventListener('click', () => {
-    if (currentProgram > 0) {
-      currentProgram--;
-      showProgram(currentProgram);
-    }
-  });
-
-  showProgram(currentProgram);
-
+  
+  // Panggil fungsi updatePrograms saat DOM sudah siap
+  document.addEventListener('DOMContentLoaded', updatePrograms);
 })();
