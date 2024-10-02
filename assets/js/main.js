@@ -210,4 +210,14 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
+  // Ambil parameter dari URL
+const urlParams = new URLSearchParams(window.location.search);
+const imgParam = urlParams.get('img');
+
+// Set gambar berdasarkan parameter
+if (imgParam) {
+  const imgElement = document.getElementById('detail-image');
+  imgElement.src = `assets/img/activities/${imgParam}`;
+}
+
 })();
