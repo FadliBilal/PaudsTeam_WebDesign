@@ -563,23 +563,25 @@ h6 {
 }
 
 .page-title {
-  color: var(--default-color);
-  background-color: var(--background-color);
+  color: #ffffff;
+  background-color: #091e5b;;
   position: relative;
+  top:-3.5em;
 }
 
 .page-title .heading {
   padding: 80px 0;
-  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+  border-top: 1px solid color-mix(in srgb, #ffffff, transparent 90%);
 }
 
 .page-title .heading h1 {
+  color: #ffffff;
   font-size: 38px;
   font-weight: 700;
 }
 
 .page-title nav {
-  background-color: color-mix(in srgb, var(--default-color), transparent 95%);
+  background-color: color-mix(in srgb, #ffffff, transparent 95%);
   padding: 20px 0;
 }
 
@@ -600,7 +602,7 @@ h6 {
   content: "/";
   display: inline-block;
   padding-right: 10px;
-  color: color-mix(in srgb, var(--default-color), transparent 70%);
+  color: color-mix(in srgb, #ffffff, transparent 70%);
 }
 
 section,
@@ -1402,4 +1404,8 @@ section,
 }
 .act-img{
   width: 95% !important;
+}
+.pagin{
+  margin-left:1em;
+  margin-right:1em;
 }

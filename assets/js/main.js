@@ -210,35 +210,56 @@
   window.addEventListener('load', navmenuScrollspy);
   document.addEventListener('scroll', navmenuScrollspy);
 
-  // Ambil parameter dari URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const imgParam = urlParams.get('img');
+  document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const imgParam = urlParams.get('img');
 
-  // Set gambar berdasarkan parameter
-  if (imgParam) {
+    // Set gambar dan deskripsi berdasarkan parameter
+    const images = ['act1.jpg', 'act2.jpg', 'act3.jpg'];
     const imgElement = document.getElementById('detail-image');
-    const imgPath = `assets/img/activities/${imgParam}`;
-    imgElement.src = imgPath;
-
-
     const descriptions = document.querySelectorAll('.description');
-    descriptions.forEach(desc => desc.style.display = 'none');
+    const prevButton = document.getElementById('prev-btn');
+    const nextButton = document.getElementById('next-btn');
 
-    // Menampilkan deskripsi yang sesuai
+    // Function to show the image and corresponding description
+    function showImage(index) {
+        const imgPath = `assets/img/activities/${images[index]}`;
+        imgElement.src = imgPath;
 
-    switch (imgParam) {
-      case 'act1.jpg':
-        document.getElementById('desc1').style.display = 'block';
-        break;
-      case 'act2.jpg':
-        document.getElementById('desc2').style.display = 'block';
-        break;
-      case 'act3.jpg':
-        document.getElementById('desc3').style.display = 'block';
-        break;
-      default:
-        console.log('Gambar tidak ditemukan.');
+        // Menyembunyikan semua deskripsi
+        descriptions.forEach(desc => desc.style.display = 'none');
+
+        // Menampilkan deskripsi yang sesuai
+        descriptions[index].style.display = 'block';
+
+        // Mengatur status tombol
+        prevButton.disabled = index === 0;
+        nextButton.disabled = index === images.length - 1;
+
+        // Mengubah URL tanpa menyegarkan halaman
+        history.replaceState(null, '', `?img=${images[index]}`);
     }
-  }
+
+    // Menentukan indeks awal berdasarkan imgParam
+    let currentIndex = images.indexOf(imgParam) !== -1 ? images.indexOf(imgParam) : 0;
+    showImage(currentIndex);
+
+    // Event listener untuk tombol Previous
+    prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            showImage(currentIndex);
+        }
+    });
+
+    // Event listener untuk tombol Next
+    nextButton.addEventListener('click', () => {
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            showImage(currentIndex);
+        }
+    });
+});
+
 
 })();
