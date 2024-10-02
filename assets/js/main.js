@@ -207,18 +207,15 @@
     const nextBtn = document.getElementById('next-btn');
     let currentProgram = 0;
   
-    // Fungsi untuk mengatur tampilan program berdasarkan index
     function showProgram(index) {
       programs.forEach((program, i) => {
         program.style.display = i === index ? 'block' : 'none';
       });
   
-      // Mengatur status tombol Previous dan Next
       prevBtn.disabled = index === 0;
       nextBtn.disabled = index === programs.length - 1;
     }
   
-    // Event listener untuk Previous button
     prevBtn.addEventListener('click', function() {
       if (currentProgram > 0) {
         currentProgram--;
@@ -226,7 +223,6 @@
       }
     });
   
-    // Event listener untuk Next button
     nextBtn.addEventListener('click', function() {
       if (currentProgram < programs.length - 1) {
         currentProgram++;
@@ -234,10 +230,8 @@
       }
     });
   
-    // Panggil untuk menampilkan program pertama
     showProgram(currentProgram);
   }
   
-  // Panggil fungsi updatePrograms saat DOM sudah siap
   document.addEventListener('DOMContentLoaded', updatePrograms);
 })();
