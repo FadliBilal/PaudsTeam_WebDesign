@@ -891,19 +891,23 @@ section,
   background-color: color-mix(in srgb, var(--surface-color), transparent 10%);
   opacity: 0;
   position: absolute;
-  left: 30px;
-  right: 30px;
+  left: 70px;
+  right: 70px;
   bottom: 0;
   z-index: 3;
   transition: all ease-in-out 0.3s;
-  padding: 15px;
+  height: 40px;
   border-radius: 0.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
 }
 
-.activities .activities-item .activities-info h4 {
+.activities .activities-item .activities-info .linked h4 {
   font-size: 18px;
   font-weight: 600;
-  padding-right: 50px;
+  padding-top: 0.5em;
 }
 
 .activities .activities-item .activities-info p {
@@ -915,23 +919,24 @@ section,
 
 .activities .activities-item .activities-info .preview-link,
 .activities .activities-item .activities-info .details-link {
-  position: absolute;
-  right: 50px;
   font-size: 24px;
   top: calc(50% - 14px);
   color: color-mix(in srgb, var(--default-color), transparent 30%);
   transition: 0.3s;
   line-height: 0;
 }
-
-.activities .activities-item .activities-info .preview-link:hover,
-.activities .activities-item .activities-info .details-link:hover {
-  color: var(--accent-color);
+.activities .activities-item .activities-info .preview-link {
+  flex: 1;                 
+  text-align: center;       
 }
 
 .activities .activities-item .activities-info .details-link {
-  right: 14px;
+  margin-left: 10px; 
   font-size: 28px;
+}
+.activities .activities-item .activities-info .preview-link:hover,
+.activities .activities-item .activities-info .details-link:hover {
+  color: var(--accent-color);
 }
 
 .activities .activities-item:hover .activities-info {
