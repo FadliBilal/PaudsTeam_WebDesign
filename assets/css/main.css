@@ -906,14 +906,7 @@ section,
 .activities .activities-filters li:hover,
 .activities .activities-filters li.filter-active {
   color: var(--accent-color);
-}
-
-.activities .activities-filters li:first-child {
-  margin-left: 0;
-}
-
-.activities .activities-filters li:last-child {
-  margin-right: 0;
+  cursor: default;
 }
 
 @media (max-width: 575px) {
@@ -937,6 +930,7 @@ section,
   z-index: 3;
   transition: all ease-in-out 0.3s;
   padding: 15px;
+  border-radius: 0.5em;
 }
 
 .activities .activities-item .activities-info h4 {
@@ -1021,6 +1015,7 @@ section,
   margin: 10px;
   border: 2px solid var(--contrast-color);
   color: var(--contrast-color);
+  margin-left: -1px; 
 }
 
 .call-to-action .cta-btn:hover {
@@ -1387,6 +1382,8 @@ section,
 
 .program-details .programs-img {
   margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .program-details h3 {
@@ -1424,14 +1421,10 @@ section,
   border-radius: 1em;
 }
 .gslide-image img {
-  border-top-left-radius: 1em;
-  border-top-right-radius: 1em;
-}
-.glightbox-container .ginner-container {
-  width: 50%;
+  border-radius: 1em;
+  width: 85% !important;
 }
 .gslide-description.description-bottom,
-    .gslide-description.description-top {
-  border-bottom-left-radius: 1em;
-  border-bottom-right-radius: 1em;
+.gslide-description.description-top {
+  display: none;
 }
