@@ -201,37 +201,58 @@
     });
   });
   
-  function updatePrograms() {
-    const programs = document.querySelectorAll('.program-item');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    let currentProgram = 0;
+  document.addEventListener("DOMContentLoaded", function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentId = urlParams.get('id');
   
-    function showProgram(index) {
-      programs.forEach((program, i) => {
-        program.style.display = i === index ? 'block' : 'none';
-      });
+    const sections = document.querySelectorAll('.program-section');
+    const ids = ['educational-support', 'emotional-care', 'skill-development', 'health-initiatives'];
   
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === programs.length - 1;
+    if (!currentId || !ids.includes(currentId)) {
+      currentId = ids[0]; 
     }
   
-    prevBtn.addEventListener('click', function() {
-      if (currentProgram > 0) {
-        currentProgram--;
-        showProgram(currentProgram);
+    let currentIndex = ids.indexOf(currentId);
+  
+    const showSection = (id) => {
+      sections.forEach(section => {
+        section.style.display = section.id === id ? 'block' : 'none';
+      });
+    };
+  
+    showSection(currentId);
+  
+    const prevButton = document.getElementById('prev-btn');
+    const nextButton = document.getElementById('next-btn');
+  
+    const updateButtons = () => {
+      prevButton.disabled = currentIndex === 0;
+      nextButton.disabled = currentIndex === ids.length - 1;
+    };
+  
+    updateButtons();
+  
+    const navigateToSection = (newIndex) => {
+      if (newIndex >= 0 && newIndex < ids.length) {
+        currentIndex = newIndex;
+        const newId = ids[currentIndex];
+        showSection(newId);
+        updateButtons();
+        history.pushState(null, '', `?id=${newId}`);
+      }
+    };
+  
+    prevButton.addEventListener('click', () => {
+      if (currentIndex > 0) {
+        navigateToSection(currentIndex - 1);
       }
     });
   
-    nextBtn.addEventListener('click', function() {
-      if (currentProgram < programs.length - 1) {
-        currentProgram++;
-        showProgram(currentProgram);
+    nextButton.addEventListener('click', () => {
+      if (currentIndex < ids.length - 1) {
+        navigateToSection(currentIndex + 1);
       }
     });
-  
-    showProgram(currentProgram);
-  }
-  
-  document.addEventListener('DOMContentLoaded', updatePrograms);
+  });       
+
 })();
