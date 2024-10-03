@@ -200,38 +200,38 @@
       }
     });
   });
-  
-  document.addEventListener("DOMContentLoaded", function() {
+
+  document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     let currentId = urlParams.get('id');
-  
+
     const sections = document.querySelectorAll('.program-section');
     const ids = ['educational-support', 'emotional-care', 'skill-development', 'health-initiatives'];
-  
+
     if (!currentId || !ids.includes(currentId)) {
-      currentId = ids[0]; 
+      currentId = ids[0];
     }
-  
+
     let currentIndex = ids.indexOf(currentId);
-  
+
     const showSection = (id) => {
       sections.forEach(section => {
         section.style.display = section.id === id ? 'block' : 'none';
       });
     };
-  
+
     showSection(currentId);
-  
+
     const prevButton = document.getElementById('prev-btn');
     const nextButton = document.getElementById('next-btn');
-  
+
     const updateButtons = () => {
       prevButton.disabled = currentIndex === 0;
       nextButton.disabled = currentIndex === ids.length - 1;
     };
-  
+
     updateButtons();
-  
+
     const navigateToSection = (newIndex) => {
       if (newIndex >= 0 && newIndex < ids.length) {
         currentIndex = newIndex;
@@ -241,18 +241,18 @@
         history.pushState(null, '', `?id=${newId}`);
       }
     };
-  
+
     prevButton.addEventListener('click', () => {
       if (currentIndex > 0) {
         navigateToSection(currentIndex - 1);
       }
     });
-  
+
     nextButton.addEventListener('click', () => {
       if (currentIndex < ids.length - 1) {
         navigateToSection(currentIndex + 1);
       }
     });
-  });       
+  });
 
 })();
