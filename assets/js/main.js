@@ -254,56 +254,38 @@
       }
     });
   });
-  function handleEnterKey(event) {
-    // Check if the pressed key is Enter
-    if (event.key === 'Enter') {
-      // Prevent the default behavior (optional)
-      event.preventDefault();
 
-      // Get all the section elements
+  function handleEnterKey(event) {
+    if (event.key === 'Enter') {
+      event.preventDefault();
       const sections = document.querySelectorAll('section');
-      // Find the currently active section
       let currentSectionIndex = Array.from(sections).findIndex(section => {
         const rect = section.getBoundingClientRect();
-        return rect.top >= 0 && rect.top < window.innerHeight; // Check if the section is in view
+        return rect.top >= 0 && rect.top < window.innerHeight;
       });
-
-      // Calculate the next section index
-      const nextSectionIndex = (currentSectionIndex + 1) % sections.length; // Loop back to the first section
-
-      // Scroll to the next section
+      const nextSectionIndex = (currentSectionIndex + 1) % sections.length; 
       scrollToSectionByIndex(nextSectionIndex);
     }
   }
-
-  // Function to scroll to a specific section by index
   function scrollToSectionByIndex(index) {
     const sections = document.querySelectorAll('section');
     const nextSection = sections[index];
-    const offset = 50; // Adjust this value for the desired offset
+    const offset = 50;
     const sectionPosition = nextSection.getBoundingClientRect().top + window.scrollY - offset;
-
-    // Smooth scroll to the next section with the specified offset
     window.scrollTo({
       top: sectionPosition,
       behavior: 'smooth'
     });
   }
-
-  // Function to handle scrolling to a specific section when a link is clicked
   function scrollToSection(event) {
-    event.preventDefault(); // Prevent default anchor click behavior
-
-    // Get the target section ID from the clicked link
+    event.preventDefault();
     const targetId = event.currentTarget.getAttribute('href');
     const targetSection = document.querySelector(targetId);
 
     if (targetSection) {
-      // Calculate the top position of the target section with an offset
-      const offset = 50; // Adjust this value for the desired offset
+      const offset = 50;
       const sectionPosition = targetSection.getBoundingClientRect().top + window.scrollY - offset;
 
-      // Smooth scroll to the target section
       window.scrollTo({
         top: sectionPosition,
         behavior: 'smooth'
@@ -311,11 +293,11 @@
     }
   }
 
-  // Add event listener for the keydown event
   document.addEventListener('keydown', handleEnterKey);
-
-  // Add event listeners to all navbar links
-  document.querySelectorAll('.navmenu a').forEach(link => {
+  document.querySelectorAll('.navmenu .unlink').forEach(link => {
     link.addEventListener('click', scrollToSection);
   });
+  
+  
+
 })();

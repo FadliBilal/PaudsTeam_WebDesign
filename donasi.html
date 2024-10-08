@@ -31,20 +31,20 @@
                     <h1 class="sitename">Together For Orphans</h1>
                 </a>
                 <nav id="navmenu" class="navmenu">
-                  <ul>
-                    <li><a href="index.html" class="active">Home</a></li>
-                    <li><a href="index.html#about-us">About</a></li>
-                    <li class="dropdown">
-                      <a href="#programs-activities" class="dropdown-toggle">Programs & Activities</a>
-                      <ul class="dropdown">
-                        <li><a href="index.html#programs">Programs</a></li>
-                        <li><a href="index.html#activities">Activities</a></li>
-                      </ul>
-                    </li>
-                    <li><a href="index.html#contact">Contact</a></li>
-                    <li><a href="donasi.html">Donation</a></li>
-                  </ul>
-                  <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="index.html#about">About</a></li>
+                        <li class="dropdown">
+                            <a href="#programs-activities" class="dropdown-toggle">Programs & Activities</a>
+                            <ul class="dropdown">
+                                <li><a href="index.html#programs">Programs</a></li>
+                                <li><a href="index.html#activities">Activities</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="index.html#contact">Contact</a></li>
+                        <li><a href="donasi.html" class="active">Donation</a></li>
+                    </ul>
+                    <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
                 </nav>
             </div>
         </div>
@@ -142,6 +142,21 @@
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/js/main.js"></script>
+    
+<script>
+    $(document).ready(function() {
+        $('a[href*="index.html#about"]').on('click', function(event) {
+            event.preventDefault(); // Prevent default anchor click behavior
+
+            const target = $(this).attr('href'); // Get the target ID
+            const offset = 2000; // Set the offset value (adjust as necessary)
+
+            $('html, body').animate({
+                scrollTop: $(target).offset().top - offset // Scroll to the target with offset
+            }, 50); // Duration of the scroll
+        });
+    });
+</script>
 </body>
 
 </html>
