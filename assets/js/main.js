@@ -166,7 +166,7 @@
   document.addEventListener("DOMContentLoaded", function () {
     const urlParams = new URLSearchParams(window.location.search);
     const imgParam = urlParams.get('img');
-    const images = ['act1.jpg', 'act2.jpg', 'act3.jpg'];
+    const images = ['act4.jpg', 'act5.jpg', 'act6.jpg'];
     const imgElement = document.getElementById('detail-image');
     const descriptions = document.querySelectorAll('.description');
     const prevButton = document.getElementById('prev-btn');
@@ -206,7 +206,7 @@
     let currentId = urlParams.get('id');
 
     const sections = document.querySelectorAll('.program-section');
-    const ids = ['educational-support', 'emotional-care', 'skill-development', 'health-initiatives'];
+    const ids = ['schollarship', 'skillforsuccess', 'pathway', 'mentalwellbeing'];
 
     if (!currentId || !ids.includes(currentId)) {
       currentId = ids[0];
