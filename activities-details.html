@@ -157,6 +157,42 @@
   <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
   <script src="assets/js/main.js"></script>
+  <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const urlParams = new URLSearchParams(window.location.search);
+    const imgParam = urlParams.get('img');
+    const images = ['act4.jpg', 'act5.jpg', 'act6.jpg'];
+    const imgElement = document.getElementById('detail-image');
+    const descriptions = document.querySelectorAll('.description');
+    const prevButton = document.getElementById('prev-btn');
+    const nextButton = document.getElementById('next-btn');
+    function showImage(index) {
+        const imgPath = `assets/img/activities/${images[index]}`;
+        imgElement.src = imgPath;
+        descriptions.forEach(desc => desc.style.display = 'none');
+        descriptions[index].style.display = 'block';
+        prevButton.disabled = index === 0; 
+        nextButton.disabled = index === images.length - 1;
+    }
+    let currentIndex = images.indexOf(imgParam) !== -1 ? images.indexOf(imgParam) : 0;
+    showImage(currentIndex);
+    prevButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentIndex > 0) {
+            currentIndex--;
+            showImage(currentIndex);
+        }
+    });
+    nextButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        if (currentIndex < images.length - 1) {
+            currentIndex++;
+            showImage(currentIndex);
+        }
+    });
+});
+
+  </script>
 </body>
 
 </html>
